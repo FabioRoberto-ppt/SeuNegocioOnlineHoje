@@ -502,7 +502,7 @@ comprovanteInput && comprovanteInput.addEventListener('change', e => {
 
 /* ── COPIAR CHAVE PIX ── */
 btnCopyPix && btnCopyPix.addEventListener('click', () => {
-  const chave = '11964676886'; // número limpo para copiar
+  const chave = 'fabio123201436@gmail.com'; // e-mail como chave Pix
   navigator.clipboard.writeText(chave)
     .then(() => {
       btnCopyPix.textContent         = '✓ Copiado!';
@@ -516,7 +516,7 @@ btnCopyPix && btnCopyPix.addEventListener('click', () => {
       }, 2500);
     })
     .catch(() => {
-      showToast('Copie manualmente: (11) 96467-6886', 'info');
+      showToast('Copie manualmente: fabio123201436@gmail.com', 'info');
     });
 });
 
@@ -574,7 +574,7 @@ function buildWhatsappMsg() {
     `• Info extra: ${briefingData.infoExtra}`,
     ``,
     `*💳 Pagamento:*`,
-    `• Já realizei o Pix de entrada (R$ 37,50) para a chave (11) 96467-6886`,
+    `• Já realizei o Pix de entrada (R$ 37,50) para a chave fabio123201436@gmail.com`,
     ``,
     `⚠️ *Vou enviar o comprovante aqui agora!*`,
     ``,
