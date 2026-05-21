@@ -29,6 +29,11 @@ router.post('/gerar-pix', async (req, res) => {
   }
 
   try {
+    // Garante que o cliente do Mercado Pago existe antes de usar
+    if (!client) {
+      throw new Error('O cliente do Mercado Pago não foi inicializado corretamente em src/config/mercadopago.js');
+    }
+
     const payment   = new Payment(client);
     const resultado = await payment.create({
       body: {
@@ -36,8 +41,8 @@ router.post('/gerar-pix', async (req, res) => {
         description:        'Site Profissional Completo — Fabio Roberto',
         payment_method_id:  'pix',
         payer: {
-          email:      email,
-          first_name: nome,
+          email:      email.trim(),
+          first_name: nome.trim(),
         },
       },
     });
@@ -59,19 +64,25 @@ router.post('/gerar-pix', async (req, res) => {
     });
 
   } catch (err) {
-    console.error('❌ Erro ao gerar Pix:', err?.cause ?? err);
+    console.error('❌ Erro detalhado ao gerar Pix:');
+    // Captura erros de resposta da API do Mercado Pago (v2)
+    if (err.api_response) {
+      console.error('Status da API:', err.api_response.status);
+      console.error('Detalhes do Erro:', JSON.stringify(err.api_response.string_to_correct || err.api_response.body, null, 2));
+    } else {
+      console.error(err);
+    }
+
     return res.status(500).json({
       sucesso: false,
-      erro:    err.message || 'Erro interno ao gerar Pix.',
+      erro: err.api_response?.body?.message || err.message || 'Erro interno ao gerar Pix.',
     });
   }
 });
 
-
 /* ────────────────────────────────────────────
    GET /api/pagamentos/status/:paymentId
    Retorna: { status, statusDetalhe }
-   status possíveis: pending | approved | rejected | cancelled
 ──────────────────────────────────────────── */
 router.get('/status/:paymentId', async (req, res) => {
   const { paymentId } = req.params;
@@ -90,7 +101,7 @@ router.get('/status/:paymentId', async (req, res) => {
     });
 
   } catch (err) {
-    console.error('❌ Erro ao checar status do Pix:', err?.cause ?? err);
+    console.error('❌ Erro ao checar status do Pix:', err);
     return res.status(500).json({ erro: err.message || 'Erro ao consultar pagamento.' });
   }
 });

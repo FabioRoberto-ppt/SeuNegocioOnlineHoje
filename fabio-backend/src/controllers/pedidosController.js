@@ -4,12 +4,13 @@ const { enviarEmailNovoPedido, enviarEmailStatusAtualizado } = require('../confi
 const path   = require('path');
 
 // ─── POST /api/pedidos ─────────────────────────────────────────────────────
-// Recebe o briefing + comprovante do frontend
+// Recebe o briefing + dados de pagamento (ou comprovante manual) do frontend
 async function criarPedido(req, res) {
   try {
     const {
       nome, whatsapp, marca, oQueVende,
       cores, logo, fotos, referencia, infoExtra,
+      paymentId, valor // 👈 CAPTURA OS DADOS DE PAGAMENTO EXECUTADOS PELO MERCADO PAGO
     } = req.body;
 
     // Validação básica (o frontend já valida, mas nunca confie só nele)
@@ -22,15 +23,21 @@ async function criarPedido(req, res) {
       return res.status(400).json({ erro: 'WhatsApp inválido.' });
     }
 
-    // Dados do comprovante (se foi enviado)
+    // Calcula automaticamente o valor da entrada (50%) com base no valor enviado ou assume o padrão de R$ 37,50 (metade de 75)
+    const valorTotal = parseFloat(valor) || 75.00;
+    const valorEntrada = valorTotal / 2;
+
+    // Dados do comprovante (se foi enviado via upload de arquivo)
     const comprovanteUrl  = req.file ? `/uploads/${req.file.filename}` : null;
     const comprovanteNome = req.file ? req.file.originalname : null;
 
+    // ⚡ QUERY COMPLETA: Salva o valor_entrada (para os gráficos) e o ID do Mercado Pago (para controle)
     const result = await pool.query(
       `INSERT INTO pedidos
         (nome, whatsapp, marca, o_que_vende, cores, tem_logo, tem_fotos,
-         referencia, info_extra, comprovante_url, comprovante_nome)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+         referencia, info_extra, comprovante_url, comprovante_nome, 
+         valor_entrada, mercadopago_payment_id, status)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
        RETURNING *`,
       [
         nome.trim(),
@@ -44,6 +51,9 @@ async function criarPedido(req, res) {
         infoExtra?.trim()  || null,
         comprovanteUrl,
         comprovanteNome,
+        valorEntrada,                            // $12 - Evita salvar nulo e quebrar o SUM() das estatísticas
+        paymentId || null,                       // $13 - ID da transação Pix gerada
+        paymentId ? 'pix_confirmado' : 'aguardando_confirmacao' // $14 - Status dinâmico
       ]
     );
 
@@ -59,8 +69,8 @@ async function criarPedido(req, res) {
     });
 
   } catch (err) {
-    console.error('Erro ao criar pedido:', err);
-    return res.status(500).json({ erro: 'Erro interno. Tente novamente.' });
+    console.error('❌ Erro ao criar pedido no banco de dados:', err);
+    return res.status(500).json({ erro: 'Erro interno ao salvar pedido. Tente novamente.' });
   }
 }
 
