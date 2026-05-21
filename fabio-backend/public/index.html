@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fabio Roberto — Desenvolvedor de Sites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<canvas id="noiseCanvas"></canvas>
+
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">FR<span>.</span></div>
+    <button class="nav-cta" id="navCartBtn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span>Montar meu pedido</span>
+      <span class="nav-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow glow-1"></div>
+  <div class="hero-glow glow-2"></div>
+
+  <div class="hero-inner">
+    <div class="hero-tag reveal" data-delay="0">
+      <span class="dot"></span>
+      Desenvolvedor Profissional de Sites
+    </div>
+
+    <h1 class="hero-title reveal" data-delay="100">
+      <span class="line">Seu negócio</span>
+      <span class="line accent-line">online hoje</span>
+      <span class="line">de verdade.</span>
+    </h1>
+
+    <p class="hero-sub reveal" data-delay="200">
+      Sites completos, personalizados e sem taxas.<br/>Pagamento direto no seu Pix. Sem enrolação.
+    </p>
+
+    <div class="hero-price-block reveal" data-delay="300">
+      <div class="price-badge">OFERTA ESPECIAL</div>
+      <div class="price-row">
+        <s class="price-old">R$ 200</s>
+        <div class="price-main">
+          <span class="price-curr">R$</span>
+          <span class="price-num">75</span>
+          <span class="price-cents">,00</span>
+        </div>
+      </div>
+      <div class="price-terms">metade na entrada · metade na entrega</div>
+      <div class="price-urgency">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Desconto válido apenas ao fechar agora
+      </div>
+    </div>
+
+    <div class="hero-actions reveal" data-delay="400">
+      <button class="btn-primary" id="heroCta">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Quero meu site agora
+      </button>
+      <a href="#features" class="btn-ghost">Ver o que inclui ↓</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint reveal" data-delay="600">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Sites Profissionais</span><span class="sep">✦</span>
+    <span>Pix Direto</span><span class="sep">✦</span>
+    <span>0% Taxas</span><span class="sep">✦</span>
+    <span>Mobile First</span><span class="sep">✦</span>
+    <span>Entrega Rápida</span><span class="sep">✦</span>
+    <span>5 Revisões</span><span class="sep">✦</span>
+    <span>Sites Profissionais</span><span class="sep">✦</span>
+    <span>Pix Direto</span><span class="sep">✦</span>
+    <span>0% Taxas</span><span class="sep">✦</span>
+    <span>Mobile First</span><span class="sep">✦</span>
+    <span>Entrega Rápida</span><span class="sep">✦</span>
+    <span>5 Revisões</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag scroll-reveal">✅ Incluso no pacote</div>
+      <h2 class="scroll-reveal">Tudo que você ganha<br/><em>com seu site</em></h2>
+      <p class="scroll-reveal">Cada item pensado para que o seu negócio venda mais e apareça com credibilidade.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card scroll-reveal" data-delay="0"><div class="feat-icon">💳</div><h3>Pix Direto</h3><p>Pagamento cai na sua conta na hora. Sem intermediários, sem esperas.</p></div>
+      <div class="feat-card scroll-reveal" data-delay="80"><div class="feat-icon">🚫</div><h3>0% de Taxas</h3><p>Nenhuma comissão sobre suas vendas. O dinheiro é todo seu.</p></div>
+      <div class="feat-card scroll-reveal" data-delay="160"><div class="feat-icon">📱</div><h3>Mobile First</h3><p>Perfeito em qualquer celular. Seus clientes acessam fácil de onde estiverem.</p></div>
+      <div class="feat-card scroll-reveal" data-delay="240"><div class="feat-icon">🖼️</div><h3>Fotos dos Produtos</h3><p>Imagens personalizadas que valorizam e destacam o que você vende.</p></div>
+      <div class="feat-card scroll-reveal" data-delay="320"><div class="feat-icon">🎨</div><h3>Logo da Marca</h3><p>Sua identidade visual aplicada com cuidado em todo o site.</p></div>
+      <div class="feat-card scroll-reveal" data-delay="400"><div class="feat-icon">🔗</div><h3>Link Funcionando</h3><p>Site publicado com link pronto para compartilhar nas redes e no WhatsApp.</p></div>
+      <div class="feat-card scroll-reveal" data-delay="480"><div class="feat-icon">✍️</div><h3>Infos do Produto</h3><p>Descrições, preços e detalhes organizados para converter visitantes em clientes.</p></div>
+      <div class="feat-card scroll-reveal" data-delay="560"><div class="feat-icon">💪</div><h3>Marca Fortalecida</h3><p>Presença digital profissional que gera confiança e autoridade.</p></div>
+      <div class="feat-card scroll-reveal" data-delay="640"><div class="feat-icon">🔄</div><h3>5 Revisões</h3><p>Ajuste o que precisar até ficar exatamente do jeito que você imaginou.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="not-included">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag scroll-reveal" style="color:var(--red);background:var(--red-dim);border-color:rgba(255,77,109,0.2);">❌ Não incluso no básico</div>
+      <h2 class="scroll-reveal">Recursos <em>avançados</em><br/>sob consulta</h2>
+      <p class="scroll-reveal">Esses itens também são realizados, porém cada um possui um valor diferente.</p>
+    </div>
+    <div class="not-grid">
+      <div class="not-item scroll-reveal"><span class="x">✕</span> Salvar contato dos clientes</div>
+      <div class="not-item scroll-reveal"><span class="x">✕</span> Anúncios por notificação</div>
+      <div class="not-item scroll-reveal"><span class="x">✕</span> Sistema de login de usuário</div>
+      <div class="not-item scroll-reveal"><span class="x">✕</span> Menu de navegação multipáginas</div>
+      <div class="not-item scroll-reveal"><span class="x">✕</span> Animações 3D</div>
+      <div class="not-item scroll-reveal"><span class="x">✕</span> Domínio personalizado .com.br</div>
+      <div class="not-item scroll-reveal"><span class="x">✕</span> Salvar dados dos usuários</div>
+    </div>
+    <div class="upsell-card scroll-reveal">
+      <div class="upsell-icon">💬</div>
+      <div>
+        <strong>Precisa de algo a mais?</strong>
+        <p>Me chame no WhatsApp e vou te passar um orçamento especial para qualquer recurso avançado.</p>
+      </div>
+      <a href="https://wa.me/5511964676886?text=Ol%C3%A1%20Fabio%2C%20quero%20um%20or%C3%A7amento%20para%20recursos%20adicionais!" class="upsell-btn" target="_blank" rel="noopener">Orçar agora</a>
+    </div>
+  </div>
+</section>
+
+<section class="steps-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag scroll-reveal">🚀 Como funciona</div>
+      <h2 class="scroll-reveal">Do pedido ao site<br/><em>em poucos dias</em></h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card scroll-reveal" data-delay="0">
+        <div class="step-num">01</div>
+        <h3>Monte seu pedido</h3>
+        <p>Clique em "Montar meu pedido", preencha as informações do seu negócio e finalize.</p>
+      </div>
+      <div class="step-arrow scroll-reveal">→</div>
+      <div class="step-card scroll-reveal" data-delay="100">
+        <div class="step-num">02</div>
+        <h3>Entrada de R$ 37,50</h3>
+        <p>Metade do valor via Pix para começar o desenvolvimento do seu site.</p>
+      </div>
+      <div class="step-arrow scroll-reveal">→</div>
+      <div class="step-card scroll-reveal" data-delay="200">
+        <div class="step-num">03</div>
+        <h3>Desenvolvimento</h3>
+        <p>Envie logo, fotos e informações. Desenvolvo seu site com até 5 revisões.</p>
+      </div>
+      <div class="step-arrow scroll-reveal">→</div>
+      <div class="step-card scroll-reveal" data-delay="300">
+        <div class="step-num">04</div>
+        <h3>Entrega + Restante</h3>
+        <p>Você aprova, paga R$ 37,50 e recebe o link do seu site pronto!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="cta-glow"></div>
+  <div class="container cta-inner">
+    <div class="section-tag scroll-reveal" style="color:var(--gold);background:rgba(255,209,102,0.1);border-color:rgba(255,209,102,0.2);">⚡ Oferta por tempo limitado</div>
+    <h2 class="scroll-reveal">Pronto para ter<br/><em>seu site hoje?</em></h2>
+    <p class="scroll-reveal">Garanta o desconto agora. Esse preço só vale enquanto durar a oferta.</p>
+    <div class="cta-price scroll-reveal">
+      <s>R$ 200,00</s>
+      <strong>R$ 75,00</strong>
+    </div>
+    <button class="btn-primary large scroll-reveal" id="finalCta">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Montar meu site agora
+    </button>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="nav-logo">FR<span>.</span></div>
+    <p>© 2025 Fabio Roberto — Desenvolvedor de Sites</p>
+    <p class="footer-phone">(11) 96467-6886</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511964676886?text=Ol%C3%A1%20Fabio%2C%20quero%20meu%20site!" class="float-wa" target="_blank" rel="noopener">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="float-label">Falar agora</span>
+</a>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>🛒 Seu Pedido</h3>
+    <button class="close-cart" id="closeCart">✕</button>
+  </div>
+
+  <div class="cart-step" id="stepCart">
+    <div class="cart-pkg">
+      <div class="cart-pkg-icon">🌐</div>
+      <div class="cart-pkg-info">
+        <h4>Site Profissional Completo</h4>
+        <p>Página única · Mobile First · Pix Direto · 5 Revisões</p>
+        <small>Entrada: R$ 37,50 · Na entrega: R$ 37,50</small>
+      </div>
+      <div class="cart-pkg-price">R$ 75,00</div>
+    </div>
+    <div class="cart-total-block">
+      <div class="total-row"><span>Subtotal</span><span>R$ 75,00</span></div>
+      <div class="total-row total-big"><span>TOTAL</span><span class="clr-green">R$ 75,00</span></div>
+      <div class="total-obs">⚡ Valor promocional — de R$ 200 por R$ 75</div>
+      <button class="btn-primary full-w" id="btnProsseguir">Prosseguir para o briefing →</button>
+    </div>
+  </div>
+
+  <div class="cart-step hidden" id="stepBriefing">
+    <div class="step-header">
+      <h4>📋 Informações do seu site</h4>
+      <p>Preencha para que eu possa criar seu site do jeito certo!</p>
+    </div>
+    <div class="form-group"><label>Seu nome completo *</label><input type="text" id="nomeCliente" placeholder="Ex: João Silva"/></div>
+    <div class="form-group"><label>WhatsApp para contato *</label><input type="tel" id="whatsappCliente" placeholder="(11) 9 9999-9999"/></div>
+    <div class="form-group"><label>Nome do seu negócio / marca *</label><input type="text" id="nomeMarca" placeholder="Ex: Doces da Maria"/></div>
+    <div class="form-group"><label>O que você vende? *</label><textarea id="oQueVende" rows="2" placeholder="Ex: Doces artesanais, bolos personalizados..."></textarea></div>
+    <div class="form-group"><label>Cores preferidas para o site</label><input type="text" id="cores" placeholder="Ex: Rosa, dourado e branco"/></div>
+    <div class="form-group">
+      <label>Você tem logo? *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="logo" value="sim"/> Sim, tenho logo</label>
+        <label><input type="radio" name="logo" value="nao"/> Não tenho logo</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Você tem fotos dos produtos?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="fotos" value="sim"/> Sim, tenho fotos</label>
+        <label><input type="radio" name="fotos" value="nao"/> Não, preciso de ajuda</label>
+      </div>
+    </div>
+    <div class="form-group"><label>Referência de site que você gosta</label><input type="text" id="referencia" placeholder="Cole um link ou descreva o estilo"/></div>
+    <div class="form-group"><label>Informações adicionais</label><textarea id="infoExtra" rows="2" placeholder="Horário, endereço, detalhes especiais..."></textarea></div>
+    <div class="btn-row">
+      <button class="btn-back" id="btnVoltarCart">← Voltar</button>
+      <button class="btn-primary" id="btnProsseguirPix">Ir para o Pix →</button>
+    </div>
+  </div>
+
+  <div class="cart-step hidden" id="stepPix">
+    <div class="step-header">
+      <h4>💳 Pagamento via Pix</h4>
+      <p>Realize o pagamento da entrada para iniciar o desenvolvimento.</p>
+    </div>
+    
+    <div class="pix-box">
+      <div class="pix-valor-label">Valor da entrada (50%)</div>
+      <div class="pix-valor">R$ 37,50</div>
+      
+      <div class="pix-divider"></div>
+
+      <div id="pixTextsEstaticos">
+        <div class="pix-chave-label">Chave Pix (celular)</div>
+        <div class="pix-chave-row">
+          <span class="pix-chave" id="pixChave">fabio123201436@gmail.com</span>
+        </div>
+        <p class="pix-nome">Favorecido: <strong>Fabio Roberto</strong></p>
+      </div>
+
+      <div id="pixDinamicoMercadoPago" style="display: none; flex-direction: column; align-items: center; gap: 14px; width: 100%;">
+        <div class="pix-chave-label">Escaneie o QR Code abaixo:</div>
+        <img id="imgQrCodeMercadoPago" src="" alt="QR Code Pix" />
+      </div>
+
+      <button type="button" class="btn-copy" id="btnCopyPix" style="margin: 140px auto;display: inline-block;">Copiar</button>
+    </div>
+
+    <div class="aviso-box">
+      <span class="aviso-icon">⚠️</span>
+      <div>
+        <strong>Atenção importante!</strong>
+        <p>O desenvolvimento só começa após o envio do <strong>comprovante</strong>. Faça o upload abaixo e envie também no WhatsApp.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>📎 Anexar comprovante do Pix *</label>
+      <div class="upload-area" id="uploadArea">
+        <input type="file" id="comprovanteFile" accept="image/*,.pdf"/>
+        <div class="upload-placeholder" id="uploadPlaceholder">
+          <span class="up-icon">📤</span>
+          <span>Clique para anexar ou arraste aqui</span>
+          <small>JPG, PNG ou PDF</small>
+        </div>
+        <div class="upload-preview hidden" id="uploadPreview">
+          <span>✅</span>
+          <span id="previewFileName"></span>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" id="btnVoltarBriefing">← Voltar</button>
+      <button class="btn-primary" id="btnFinalizar">✅ Finalizar pedido</button>
+    </div>
+  </div>
+
+  <div class="cart-step hidden" id="stepSucesso">
+    <div class="sucesso-box">
+      <div class="sucesso-icon">🎉</div>
+      <h3>Pedido recebido!</h3>
+      <p>Agora clique abaixo e <strong>envie o comprovante do Pix</strong> na conversa do WhatsApp. O desenvolvimento começa após a confirmação!</p>
+      <div class="sucesso-resumo" id="sucessoResumo"></div>
+      <a id="btnWhatsappFinal" class="btn-primary full-w" href="#" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        📎 Enviar comprovante no WhatsApp
+      </a>
+    </div>
+  </div>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>
